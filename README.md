@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/d-klotz/meat-app-angular.svg?branch=master)](https://travis-ci.org/d-klotz/meat-app-angular)
-
 # Meat App Angular
 
 ## 1. Passos para começar
