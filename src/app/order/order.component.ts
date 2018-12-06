@@ -53,7 +53,6 @@ export class OrderComponent implements OnInit {
         this.router.navigate(['/order-sumary']);
         this.orderService.clear();
       })
-    console.log(order);
   }
 
 }
