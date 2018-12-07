@@ -10,6 +10,8 @@ app.use(express.static(__dirname + '/dist/'));
 console.log('logando o nome do diretorio');
 console.log(__dirname)
 
+app.use(forceSSL());
+
 app.get('/*', function(req,res) {
     
 res.sendFile(path.join(__dirname+'/dist/index.html'));
