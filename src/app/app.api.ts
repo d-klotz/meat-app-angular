@@ -1,1 +1,1 @@
-export const MEAT_API = 'https://meat-app-dklotz.herokuapp.com';
+export const MEAT_API = 'http://localhost:3000';
