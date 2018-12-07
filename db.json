@@ -466,22 +466,6 @@
         }
       ],
       "id": 6
-    },
-    {
-      "name": "DANIEL FELIPE KLOTZ",
-      "email": "danielfelipeklotz@gmail.com",
-      "emailConfirmation": "danielfelipeklotz@gmail.com",
-      "address": "Rua Erwin Manzke",
-      "number": "113",
-      "optionalAddress": "",
-      "paymentOption": "MON",
-      "orderItems": [
-        {
-          "quantity": 2,
-          "menuId": "cup-cake"
-        }
-      ],
-      "id": 7
     }
   ]
 }
