@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ROUTES } from 'app/app.routes';
 
@@ -21,13 +20,8 @@ import { ReviewsComponent } from './restaurant-detail/reviews/reviews.component'
 
 import { ShoppingCartService } from './restaurant-detail/shopping-cart/shopping-cart.service';
 import { OrderService } from './order/order.service';
-import { OrderComponent } from './order/order.component';
-import { InputComponent } from '../app/shared/input/input.component';
-import { RadioComponent } from '../app/shared/radio/radio.component';
-import { OrderItemsComponent } from '../app/order/order-items/order-items.component';
-import { DeliveryCostsComponent } from './order/delivery-costs/delivery-costs.component';
 import { OrderSumaryComponent } from './order-sumary/order-sumary.component';
-import { RatingComponent } from './shared/rating/rating.component';
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
@@ -42,19 +36,12 @@ import { RatingComponent } from './shared/rating/rating.component';
     ShoppingCartComponent,
     MenuItemComponent,
     ReviewsComponent,
-    OrderComponent,
-    InputComponent,
-    RadioComponent,
-    OrderItemsComponent,
-    DeliveryCostsComponent,
     OrderSumaryComponent,
-    RatingComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
-    FormsModule,
-    ReactiveFormsModule,
+    SharedModule,
     RouterModule.forRoot(ROUTES)
   ],
   providers: [RestaurantsService, ShoppingCartService, OrderService, {provide: LOCALE_ID, useValue: 'pt-BR'}],
