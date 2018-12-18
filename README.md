@@ -16,7 +16,7 @@
 
 ### Configure e inicie o backend conforme o descrito no projeto abaixo
 
-[meat-app-backend)](https://github.com/d-klotz/meat-app-backend)
+[meat-app-backend](https://github.com/d-klotz/meat-app-backend)
 
 ## Créditos
 
