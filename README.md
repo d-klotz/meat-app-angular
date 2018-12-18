@@ -12,32 +12,11 @@
 
 `ng serve` ou `npm start`
 
-## 2. Iniciando o Backend
+## 2. Backend
 
-### Instalando o json-server
+### Configure e inicie o backend conforme o descrito no projeto abaixo
 
-`npm install -g json-server`
-
-### Iniciando o serviço (raiz da aplicação)
-
-`json-server db.json`
-
-## Goodies
-
-Expressões regulares usadas na validação de formulários
-
-### Email Regex
-
-`/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i`
-
-### Number Regex
-
-`/^[0-9]*$/`
-
-
-## Aplicação executando
-
-`https://meat-app-dklotz.herokuapp.com/`
+[meat-app-backend)](https://github.com/d-klotz/meat-app-backend)
 
 ## Créditos
 
