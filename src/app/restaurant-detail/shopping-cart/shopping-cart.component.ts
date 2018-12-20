@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ShoppingCartService } from './shopping-cart.service';
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
-import { ReadyState } from '@angular/http';
 
 @Component({
   selector: 'mt-shopping-cart',

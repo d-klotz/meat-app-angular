@@ -80,7 +80,6 @@ export class OrderComponent implements OnInit {
   }
 
   checkOrder(order: Order) {
-    console.log(this.cartItems());
     
     order.orderItems = this.cartItems()    
       .map((item: CartItem) => new OrderItem(item.quantity, item.menuItem._id));
