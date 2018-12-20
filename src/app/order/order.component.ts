@@ -6,6 +6,10 @@ import { RadioOption } from 'app/shared/radio/radio-option.model';
 import { OrderService } from './order.service';
 import { CartItem } from 'app/restaurant-detail/shopping-cart/cart-item.model';
 import { Order, OrderItem } from './order.model';
+import { LoginService } from 'app/security/login/login.service';
+import { unescapeIdentifier } from '@angular/compiler';
+
+import 'rxjs/add/operator/do';
 
 @Component({
   selector: 'mt-order',
@@ -21,6 +25,8 @@ export class OrderComponent implements OnInit {
 
   delivery: number = 8;
 
+  orderId: string;
+
   paymentOptions: RadioOption[] = [
     {label: 'Dinheiro', value: 'MON'},
     {label: 'Cartão de Débito', value: 'DEB'},
@@ -29,7 +35,8 @@ export class OrderComponent implements OnInit {
 
   constructor(private orderService: OrderService, 
               private router: Router,
-              private formBuilder: FormBuilder) { }
+              private formBuilder: FormBuilder,
+              private loginService: LoginService) { }
 
               
   ngOnInit() {
@@ -42,6 +49,16 @@ export class OrderComponent implements OnInit {
       optionalAddress: this.formBuilder.control(''),
       paymentOption: this.formBuilder.control('', [Validators.required])
     }, { validator: OrderComponent.equalsTo })
+  
+    this.autoFillFields();
+  }
+
+  autoFillFields(){
+    if (this.loginService.isUserLoggedIn) {
+      this.orderForm.controls['name'].setValue(this.loginService.user.name);
+      this.orderForm.controls['email'].setValue(this.loginService.user.email);
+      this.orderForm.controls['emailConfirmation'].setValue(this.loginService.user.email);
+    }
   }
 
   static equalsTo(group: AbstractControl): {[key:string]: boolean} {
@@ -83,10 +100,18 @@ export class OrderComponent implements OnInit {
     
     order.orderItems = this.cartItems()    
       .map((item: CartItem) => new OrderItem(item.quantity, item.menuItem._id));
-      this.orderService.checkOrder(order).subscribe((orderId: string) => {
-        this.router.navigate(['/order-sumary']);
-        this.orderService.clear();
+      this.orderService.checkOrder(order)
+        .do((orderId: string) => {
+          this.orderId = orderId;
+        })
+        .subscribe((orderId: string) => {
+          this.router.navigate(['/order-sumary']);
+          this.orderService.clear();
       })
+  }
+
+  isOrderCompleted(): boolean {
+    return this.orderId !== undefined;
   }
 
 }
