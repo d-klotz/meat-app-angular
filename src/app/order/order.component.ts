@@ -7,9 +7,8 @@ import { OrderService } from './order.service';
 import { CartItem } from 'app/restaurant-detail/shopping-cart/cart-item.model';
 import { Order, OrderItem } from './order.model';
 import { LoginService } from 'app/security/login/login.service';
-import { unescapeIdentifier } from '@angular/compiler';
 
-import 'rxjs/add/operator/do';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'mt-order',
@@ -40,15 +39,28 @@ export class OrderComponent implements OnInit {
 
               
   ngOnInit() {
-    this.orderForm = this.formBuilder.group({
-      name: this.formBuilder.control('', [Validators.required, Validators.minLength(3)]),
-      email: this.formBuilder.control('', [Validators.required, Validators.pattern(this.emailPattern)]),
-      emailConfirmation: this.formBuilder.control('', [Validators.required, Validators.pattern(this.emailPattern)]),
-      address: this.formBuilder.control('', [Validators.required, Validators.minLength(5)]),
-      number: this.formBuilder.control('', [Validators.required, Validators.pattern(this.numberPattern)]),
-      optionalAddress: this.formBuilder.control(''),
-      paymentOption: this.formBuilder.control('', [Validators.required])
-    }, { validator: OrderComponent.equalsTo })
+    this.orderForm = new FormGroup({
+      name: new FormControl('', { 
+        validators: [Validators.required, Validators.minLength(3)]
+      }), // com angular 6 é possivel declarar itens do formulario desta forma
+      email: new FormControl('', {
+        validators: [Validators.required, Validators.pattern(this.emailPattern)]
+      }),
+      emailConfirmation: new FormControl('', { 
+        validators: [Validators.required, Validators.pattern(this.emailPattern)]
+      }),
+      address: new FormControl('', {
+        validators: [Validators.required, Validators.minLength(5)]
+      }),
+      number: new FormControl('', {validators: 
+        [Validators.required, Validators.pattern(this.numberPattern)]
+      }),
+      optionalAddress: new FormControl(''),
+      paymentOption: new FormControl('', {
+        validators: [Validators.required],
+        updateOn: 'change'
+      })
+    }, { validators: [OrderComponent.equalsTo], updateOn: 'blur' }) // e tbm adicionar validators a todo o form
   
     this.autoFillFields();
   }
@@ -101,9 +113,11 @@ export class OrderComponent implements OnInit {
     order.orderItems = this.cartItems()    
       .map((item: CartItem) => new OrderItem(item.quantity, item.menuItem._id));
       this.orderService.checkOrder(order)
-        .do((orderId: string) => {
+      .pipe(
+        tap((orderId: string) => {
           this.orderId = orderId;
         })
+      )
         .subscribe((orderId: string) => {
           this.router.navigate(['/order-sumary']);
           this.orderService.clear();
