@@ -13,6 +13,8 @@ import { OrderService } from "app/order/order.service";
 import { SnackbarComponent } from './messages/snackbar/snackbar.component';
 import { NotificationService } from "./messages/notification.service";
 import { LoginService } from "app/security/login/login.service";
+import { NewUserService } from "../user/new-user/new-user.service";
+import { EditUserService } from "../user/edit-user/edit-user.service";
 import { LoggedInGuard } from "../security/loggedin.guard";
 import { LeaveOrderGuard } from "../order/leave-order.guard";
 import { AuthInterceptor } from "app/security/auth.interceptor";
@@ -35,6 +37,8 @@ export class SharedModule {
                         OrderService, 
                         NotificationService, 
                         LoginService,
+                        EditUserService,
+                        NewUserService,
                         LoggedInGuard,
                         LeaveOrderGuard,
                         {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi:true}]

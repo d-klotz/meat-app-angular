@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'app/security/login/login.service';
-import { User } from 'app/security/login/user.model';
+import { User } from '../user.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'mt-user-detail',
@@ -9,7 +10,7 @@ import { User } from 'app/security/login/user.model';
 })
 export class UserDetailComponent implements OnInit {
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -28,6 +29,7 @@ export class UserDetailComponent implements OnInit {
 
   logout() {
     this.loginService.logout();
+    this.router.navigate(['/restaurants']);
   }
 
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators, AbstractControl, FormControl } from '@angular/forms';
+import { FormGroup, Validators, AbstractControl, FormControl } from '@angular/forms';
 
 import { RadioOption } from 'app/shared/radio/radio-option.model';
 import { OrderService } from './order.service';
@@ -34,13 +34,12 @@ export class OrderComponent implements OnInit {
 
   constructor(private orderService: OrderService, 
               private router: Router,
-              private formBuilder: FormBuilder,
               private loginService: LoginService) { }
 
               
   ngOnInit() {
     this.orderForm = new FormGroup({
-      name: new FormControl('', { 
+      name: new FormControl('', {
         validators: [Validators.required, Validators.minLength(3)]
       }), // com angular 6 é possivel declarar itens do formulario desta forma
       email: new FormControl('', {
@@ -70,6 +69,9 @@ export class OrderComponent implements OnInit {
       this.orderForm.controls['name'].setValue(this.loginService.user.name);
       this.orderForm.controls['email'].setValue(this.loginService.user.email);
       this.orderForm.controls['emailConfirmation'].setValue(this.loginService.user.email);
+      this.orderForm.controls['address'].setValue(this.loginService.user.address);
+      this.orderForm.controls['number'].setValue(this.loginService.user.number);
+      this.orderForm.controls['optionalAddress'].setValue(this.loginService.user.complement);
     }
   }
 

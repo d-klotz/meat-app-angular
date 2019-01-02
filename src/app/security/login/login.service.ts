@@ -6,7 +6,7 @@ import { Observable } from "rxjs";
 import { tap, filter } from "rxjs/operators";
 
 import { MEAT_API } from "../../app.api";
-import { User } from "./user.model";
+import { User } from "../../user/user.model";
 
 @Injectable()
 export class LoginService {
@@ -35,5 +35,9 @@ export class LoginService {
 
     logout() {
         this.user = undefined;
+    }
+
+    updateLoginUser(user: User) {
+        this.user = user;
     }
 }

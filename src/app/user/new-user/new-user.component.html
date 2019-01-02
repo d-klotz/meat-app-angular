@@ -1,0 +1,92 @@
+<section class="content-header"></section>
+<section class="content">
+   <section class="invoice">
+
+  <form [formGroup]="newUserForm" novalidate>
+    <div class="row">
+      <div class="col-xs-12">
+          <h2 class="page-header">
+            <i class="fa fa-user"></i> Novo usuário
+          </h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-9">
+          <p class="lead"> Seus Dados</p>
+      </div>
+      <div class="col-xs-12 col-sm-3">              
+        <span class="help-block pull-right has-error-block" *ngIf="newUserForm.hasError('emailsNotMatch')"><i class="fa fa-remove"></i>E-mails não conferem.</span>
+      </div>
+      <div class="col-sm-6 col-xs-12">
+          <mt-input-container errorMessage="Campo obrigatório e com 3 caracteres" label="Nome">
+            <input class="form-control" formControlName="name" autocomplete="off" placeholder="Nome">
+          </mt-input-container>
+      </div>
+      <div class="col-sm-3 col-xs-6">
+          <mt-input-container errorMessage="E-mail inválido" label="E-mail">
+            <input type="text" class="form-control" formControlName="email" placeholder="E-mail" autocomplete="off">
+          </mt-input-container>
+      </div>
+      <div class="col-sm-3 col-xs-6">
+          <mt-input-container errorMessage="E-mail inválido" label="Confirmação de E-mail">
+            <input type="text" class="form-control" formControlName="emailConfirmation" placeholder="Confirmação do E-mail" autocomplete="off">
+          </mt-input-container>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12">
+          <p class="lead"> Local de entrega</p>
+      </div>
+      <div class="col-sm-6 col-xs-12">
+          <mt-input-container errorMessage="Campo obrigatório e com 3 caracteres" label="Endereço de entrega padrão">
+            <input type="text" class="form-control" formControlName="defaultAddress" placeholder="Endereço de entrega padrão" autocomplete="off">
+          </mt-input-container>
+      </div>
+      <div class="col-sm-3 col-xs-12">
+          <mt-input-container errorMessage="Campo obrigatório e somente números" label="Número">
+             <input type="text" class="form-control" formControlName="number" placeholder="Número" autocomplete="off">
+          </mt-input-container>
+       </div>
+       <div class="col-sm-3 col-xs-12">
+          <div class="form-group">
+             <mt-input-container>
+                <input type="text" class="form-control" formControlName="optionalAddress" placeholder="Complemento">
+             </mt-input-container>
+          </div>
+       </div>
+      </div>
+      <div class="row">
+          <div class="col-xs-12 col-sm-9">
+              <p class="lead"> Senha</p>
+          </div>
+          <div class="col-xs-12 col-sm-3">              
+              <span class="help-block pull-right has-error-block" *ngIf="newUserForm.hasError('passwordsNotMatch')"><i class="fa fa-remove"></i>Senhas não conferem.</span>
+          </div>
+          <div class="col-sm-6 col-xs-12">
+            <div class="form-group">
+                <mt-input-container [showTip]="true" errorMessage="Campo obrigatório e mínimo 5 caracteres">
+                  <input type="password" formControlName="password" class="form-control" placeholder="Senha">
+                  <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                </mt-input-container>
+            </div>
+          </div>
+          <div class="col-sm-6 col-xs-12">
+            <div class="form-group">
+                <mt-input-container [showTip]="true" errorMessage="Campo obrigatório e mínimo 5 caracteres">
+                  <input type="password" formControlName="confirmationPassword" class="form-control" placeholder="Confirmação de Senha">
+                  <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                </mt-input-container>
+            </div>
+          </div>
+      </div>
+    <br/>
+      <div class="row">
+          <div class="col-xs-6 pull-left">
+            <a [routerLink]="['/restaurants']">Cancelar</a> 
+          </div>
+          <div class="col-xs-6 pull-right">
+          <button type="submit" class="btn btn-primary btn-block btn-flat" [disabled]="newUserForm.invalid" (click)="createUser()">Cadastrar</button>
+        </div>
+      </div> 
+  </form>
+</section>

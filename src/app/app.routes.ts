@@ -8,11 +8,16 @@ import { OrderSumaryComponent } from "./order-sumary/order-sumary.component";
 import { NotFoundComponent } from "./not-found/not-found.component";
 import { LoginComponent } from "./security/login/login.component";
 import { LoggedInGuard } from "./security/loggedin.guard";
+import { NewUserComponent } from "./user/new-user/new-user.component";
+import { EditUserComponent } from "./user/edit-user/edit-user.component";
 
 export const ROUTES: Routes = [
     {path: '', component: HomeComponent},
     {path: 'login/:to', component: LoginComponent},
     {path: 'login', component: LoginComponent},
+    {path: 'new-user', component: NewUserComponent},
+    {path: 'edit-user', component: EditUserComponent, 
+        canLoad: [LoggedInGuard], canActivate: [LoggedInGuard]},
     {path: 'about', loadChildren: './about/about.module#AboutModule'},
     {path: 'restaurants/:id', component: RestaurantDetailComponent,
     children: [
