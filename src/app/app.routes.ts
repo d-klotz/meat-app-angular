@@ -10,11 +10,13 @@ import { LoginComponent } from "./security/login/login.component";
 import { LoggedInGuard } from "./security/loggedin.guard";
 import { NewUserComponent } from "./user/new-user/new-user.component";
 import { EditUserComponent } from "./user/edit-user/edit-user.component";
+import { UserOrderComponent } from "./user/user-order/user-order.component";
 
 export const ROUTES: Routes = [
     {path: '', component: HomeComponent},
     {path: 'login/:to', component: LoginComponent},
     {path: 'login', component: LoginComponent},
+    {path: 'user-orders', component: UserOrderComponent},
     {path: 'new-user', component: NewUserComponent},
     {path: 'edit-user', component: EditUserComponent, 
         canLoad: [LoggedInGuard], canActivate: [LoggedInGuard]},

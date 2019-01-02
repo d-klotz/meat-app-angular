@@ -29,6 +29,7 @@ import { LoginComponent } from './security/login/login.component';
 import { UserDetailComponent } from './user/user-detail/user-detail.component';
 import { NewUserComponent } from './user/new-user/new-user.component';
 import { EditUserComponent } from './user/edit-user/edit-user.component';
+import { UserOrderComponent } from './user/user-order/user-order.component';
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import { EditUserComponent } from './user/edit-user/edit-user.component';
     UserDetailComponent,
     NewUserComponent,
     EditUserComponent,
+    UserOrderComponent,
   ],
   imports: [
     BrowserModule,

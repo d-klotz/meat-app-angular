@@ -111,8 +111,9 @@ export class OrderComponent implements OnInit {
   }
 
   checkOrder(order: Order) {
-    
-    order.orderItems = this.cartItems()    
+    order.user = this.loginService.user.id;
+    order.total = this.orderService.itemsValue();
+    order.orderItems = this.cartItems()  
       .map((item: CartItem) => new OrderItem(item.quantity, item.menuItem._id));
       this.orderService.checkOrder(order)
       .pipe(

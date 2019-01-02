@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { ShoppingCartService } from "app/restaurant-detail/shopping-cart/shopping-cart.service";
 import { CartItem } from "app/restaurant-detail/shopping-cart/cart-item.model";
-import { Order } from "./order.model";
+import { Order, OrderItem } from "./order.model";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { HttpClient} from "@angular/common/http";
@@ -40,6 +40,10 @@ export class OrderService {
 
     clear() {
         this.cartService.clear();
+    }
+
+    ordersByUser(userId: string): Observable<any> {
+        return this.http.get(`${MEAT_API}/api/user/${userId}/orders`)
     }
 
 
